@@ -36,4 +36,11 @@ public class Animal implements Serializable  {
         System.out.println("Это животное не знает команд.");
     }
 
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public String getType() {
+        return type;
+    }
 }

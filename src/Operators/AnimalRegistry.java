@@ -81,30 +81,30 @@ public class AnimalRegistry {
 
     }
 
-    public void displayRegistry(){
+    public void displayRegistry() {
         System.out.println("Реестр домашних животных:");
-        for (Animal animal : animalList){
+        for (Animal animal : animalList) {
             animal.displayInfo();
             System.out.println("-----------------------------");
         }
     }
 
-    public void saveToFile(){
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ALL_ANIMAL_LIST))){
-        oos.writeObject(animalList);
-        System.out.println("Данные успешно сохранены.");
-        } catch (IOException e){
+    public void saveToFile() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ALL_ANIMAL_LIST))) {
+            oos.writeObject(animalList);
+            System.out.println("Данные успешно сохранены.");
+        } catch (IOException e) {
             System.out.println("Ошибка при сохранении данных в файл: " + e.getMessage());
         }
     }
 
-    public void loadFromFile(){
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ALL_ANIMAL_LIST))){
-        List<Animal> loadedList = (List<Animal>) ois.readObject();
-        animalList.clear();
-        animalList.addAll(loadedList);
+    public void loadFromFile() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ALL_ANIMAL_LIST))) {
+            List<Animal> loadedList = (List<Animal>) ois.readObject();
+            animalList.clear();
+            animalList.addAll(loadedList);
             System.out.println("Данные успешно загружены из файла.");
-        } catch (IOException | ClassNotFoundException e){
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("Ошибка загрузки из файла: " + e.getMessage());
         }
     }
@@ -127,13 +127,13 @@ public class AnimalRegistry {
         return null;
     }
 
-    public void displayCommandsForAnimal(){
+    public void displayCommandsForAnimal() {
         System.out.println("Введите ID животного для отображения доступных команд: ");
         Scanner scanner = new Scanner(System.in);
         int animalID = scanner.nextInt();
         scanner.nextLine();
 
-        if (containsAnimal(animalID)){
+        if (containsAnimal(animalID)) {
             getAnimalById(animalID).displayCommands();
         } else {
             System.out.println("Животное с ID " + animalID + " не найдено в реестре.");
@@ -147,19 +147,18 @@ public class AnimalRegistry {
         int animalId = scanner.nextInt();
         scanner.nextLine();
 
-        if (containsAnimal(animalId)){
+        if (containsAnimal(animalId)) {
             Animal animal = getAnimalById(animalId);
 
             System.out.println("Введите новую команду для обучения:");
             String newCommand = scanner.nextLine();
 
 
-
-            if (animal instanceof Pet){
+            if (animal instanceof Pet) {
                 Pet pet = (Pet) animal;
                 pet.addCommand(newCommand);
                 System.out.println(animal.getName() + " домашний питомец успешно обучено новой команде: " + newCommand);
-            } else if (animal instanceof PackAnimal){
+            } else if (animal instanceof PackAnimal) {
                 PackAnimal pet = (PackAnimal) animal;
                 pet.addCommand(newCommand);
                 System.out.println(animal.getName() + " животное успешно обучено новой команде: " + newCommand);
@@ -167,8 +166,24 @@ public class AnimalRegistry {
                 System.out.println("Это животное нельзя обучить командам.");
             }
 
-        }else {
+        } else {
             System.out.println("Животное с ID " + animalId + " не найдено в реестре.");
         }
+    }
+
+    public void displayAnimalsByBirthDate() {
+        if (animalList.isEmpty()) {
+            System.out.println("Реестр животных пуст.");
+            return;
+        }
+        System.out.println("-----------------------------------");
+        System.out.println("Список животных по дате рождения:");
+
+        Collections.sort(animalList, Comparator.comparing(Animal::getBirthDate));
+        for (Animal animal : animalList) {
+            System.out.println("Дата рождения: " + animal.getBirthDate() + ", Имя: " + animal.getName() +
+                    ", Тип: " + animal.getType() + ", ID: " + animal.getId());
+        }
+        System.out.println("-----------------------------------");
     }
 }
