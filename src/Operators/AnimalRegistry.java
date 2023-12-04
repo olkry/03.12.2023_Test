@@ -1,6 +1,8 @@
 package Operators;
 
 import AnimalsClasses.Animal;
+import AnimalsClasses.PackAnimal;
+import AnimalsClasses.Pet;
 import AnimalsClasses.SubClasses.*;
 
 import java.io.*;
@@ -76,6 +78,7 @@ public class AnimalRegistry {
         animalList.add(newAnimal);
         System.out.println("Животное успешно добавленно в реестр");
 
+
     }
 
     public void displayRegistry(){
@@ -134,6 +137,38 @@ public class AnimalRegistry {
             getAnimalById(animalID).displayCommands();
         } else {
             System.out.println("Животное с ID " + animalID + " не найдено в реестре.");
+        }
+
+    }
+
+    public void trainAnimal() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите ID животного, которое вы хотите обучить:");
+        int animalId = scanner.nextInt();
+        scanner.nextLine();
+
+        if (containsAnimal(animalId)){
+            Animal animal = getAnimalById(animalId);
+
+            System.out.println("Введите новую команду для обучения:");
+            String newCommand = scanner.nextLine();
+
+
+
+            if (animal instanceof Pet){
+                Pet pet = (Pet) animal;
+                pet.addCommand(newCommand);
+                System.out.println(animal.getName() + " домашний питомец успешно обучено новой команде: " + newCommand);
+            } else if (animal instanceof PackAnimal){
+                PackAnimal pet = (PackAnimal) animal;
+                pet.addCommand(newCommand);
+                System.out.println(animal.getName() + " животное успешно обучено новой команде: " + newCommand);
+            } else {
+                System.out.println("Это животное нельзя обучить командам.");
+            }
+
+        }else {
+            System.out.println("Животное с ID " + animalId + " не найдено в реестре.");
         }
     }
 }
