@@ -8,6 +8,9 @@ public class PackAnimal extends Animal implements Serializable {
 
     public static final long serialVersionUID = 1L;
 
+    /**
+     * @return Метод возвращает изученные животным команды.
+     */
     public List<String> getCommands() {
         return commands;
     }
@@ -29,6 +32,9 @@ public class PackAnimal extends Animal implements Serializable {
         }
     }
 
+    /**
+     * @param command Принимает команду и добавляет её выбранному животному.
+     */
     public void addCommand(String command){
         commands.add(command);
 //        System.out.println("Команда \"" + command + "\" успешно добавлена для " + getName());

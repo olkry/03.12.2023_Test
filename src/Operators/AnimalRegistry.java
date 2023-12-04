@@ -18,10 +18,16 @@ public class AnimalRegistry {
         this.totalAnimalCount = 6; // Число установил 6, т.к. на момент создания счётчика уже добавил 6 животных
     }
 
+    /**
+     * @return Метод возвращает новый ID, который не повторяется у имеющихся в списке животных
+     */
     private int generateID() {
         return animalList.size() + 1;
     }
 
+    /**
+     * Метод добавляющий новых животных
+     */
     public void addAnimal() {
         Scanner scanner = new Scanner(System.in);
 
@@ -84,6 +90,9 @@ public class AnimalRegistry {
 
     }
 
+    /**
+     * Метод выводящий всех домашних животных в списке
+     */
     public void displayRegistry() {
         System.out.println("Реестр домашних животных:");
         for (Animal animal : animalList) {
@@ -92,6 +101,9 @@ public class AnimalRegistry {
         }
     }
 
+    /**
+     * Метод для сохранения данных в файл
+     */
     public void saveToFile() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ALL_ANIMAL_LIST))) {
             oos.writeObject(animalList);
@@ -101,6 +113,9 @@ public class AnimalRegistry {
         }
     }
 
+    /**
+     * Метод для загрузки данных из файла
+     */
     public void loadFromFile() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ALL_ANIMAL_LIST))) {
             List<Animal> loadedList = (List<Animal>) ois.readObject();
@@ -112,6 +127,10 @@ public class AnimalRegistry {
         }
     }
 
+    /**
+     * @param animalId принимает ID необходимого животного
+     * @return возвращает подтверждение присутствия данного животного в списке
+     */
     public boolean containsAnimal(int animalId) {
         for (Animal animal : animalList) {
             if (animal.getId() == animalId) {
@@ -121,6 +140,10 @@ public class AnimalRegistry {
         return false;
     }
 
+    /**
+     * @param animalId принимает ID необходимого животного
+     * @return возвращает даннные по животному
+     */
     public Animal getAnimalById(int animalId) {
         for (Animal animal : animalList) {
             if (animal.getId() == animalId) {
@@ -130,6 +153,9 @@ public class AnimalRegistry {
         return null;
     }
 
+    /**
+     * Метод для ввода и просмотра команд конкретного животного
+     */
     public void displayCommandsForAnimal() {
         System.out.println("Введите ID животного для отображения доступных команд: ");
         Scanner scanner = new Scanner(System.in);
@@ -144,6 +170,9 @@ public class AnimalRegistry {
 
     }
 
+    /**
+     * Метод добавляющий конкретному животному новую команду
+     */
     public void trainAnimal() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите ID животного, которое вы хотите обучить:");
@@ -174,6 +203,9 @@ public class AnimalRegistry {
         }
     }
 
+    /**
+     * Метод выводит список животных по старшинству
+     */
     public void displayAnimalsByBirthDate() {
         if (animalList.isEmpty()) {
             System.out.println("Реестр животных пуст.");
@@ -190,6 +222,9 @@ public class AnimalRegistry {
         System.out.println("-----------------------------------");
     }
 
+    /**
+     * Метод выводящий, сколько животных было добавлено в реестр
+     */
     public void displayTotalAnimalCount() {
         System.out.println("Общее количество созданных животных: " + totalAnimalCount);
     }

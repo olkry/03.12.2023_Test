@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public class terminal {
 
+    /**
+     * Метод для запуска терминала
+     */
     public void startTerminal() {
         AnimalRegistry animalRegistry = new AnimalRegistry();
         Scanner scanner = new Scanner(System.in);
