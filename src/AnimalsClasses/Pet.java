@@ -28,4 +28,10 @@ public class Pet extends Animal implements Serializable {
             }
         }
     }
+
+    public void addCommand(String command){
+        commands.add(command);
+//        System.out.println("Команда \"" + command + "\" успешно добавлена для " + getName());
+    }
+
 }

@@ -15,6 +15,7 @@ public class terminal {
             System.out.println("2. Просмотреть реестр");
             System.out.println("3. Добавить новое животное");
             System.out.println("4. Отобразить список команд для животного");
+            System.out.println("5. Обучить животное новой команде");
             System.out.println("8. Сохранить в файл");
             System.out.println("9. Выход");
 
@@ -36,6 +37,11 @@ public class terminal {
 
                 case 4:
                     animalRegistry.displayCommandsForAnimal();
+                    break;
+
+                case 5:
+                    animalRegistry.trainAnimal();
+                    break;
 
                 case 8:
                     animalRegistry.saveToFile();
