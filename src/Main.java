@@ -1,5 +1,8 @@
+import Terminal.terminal;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        terminal terminalInstance = new terminal();
+        terminalInstance.startTerminal();
     }
 }
