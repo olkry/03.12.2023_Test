@@ -17,6 +17,7 @@ public class terminal {
             System.out.println("4. Отобразить список команд для животного");
             System.out.println("5. Обучить животное новой команде");
             System.out.println("6. Просмотреть список животных по дате рождения");
+            System.out.println("7. Вывести общее количество созданных животных");
             System.out.println("8. Сохранить в файл");
             System.out.println("9. Выход");
 
@@ -46,6 +47,10 @@ public class terminal {
 
                 case 6:
                     animalRegistry.displayAnimalsByBirthDate();
+                    break;
+
+                case 7:
+                    animalRegistry.displayTotalAnimalCount();
                     break;
 
                 case 8:

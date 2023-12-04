@@ -11,9 +11,11 @@ import java.util.*;
 public class AnimalRegistry {
     private List<Animal> animalList;
     private static final String ALL_ANIMAL_LIST = "AllAnimal.dat";
+    private int totalAnimalCount;
 
     public AnimalRegistry() {
         this.animalList = new ArrayList<>();
+        this.totalAnimalCount = 6; // Число установил 6, т.к. на момент создания счётчика уже добавил 6 животных
     }
 
     private int generateID() {
@@ -76,6 +78,7 @@ public class AnimalRegistry {
         }
 
         animalList.add(newAnimal);
+        totalAnimalCount++;
         System.out.println("Животное успешно добавленно в реестр");
 
 
@@ -185,5 +188,9 @@ public class AnimalRegistry {
                     ", Тип: " + animal.getType() + ", ID: " + animal.getId());
         }
         System.out.println("-----------------------------------");
+    }
+
+    public void displayTotalAnimalCount() {
+        System.out.println("Общее количество созданных животных: " + totalAnimalCount);
     }
 }
